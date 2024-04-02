@@ -1,0 +1,212 @@
+HTML
+
+<html>
+ <head>
+        <title>To-Do-List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+        <div class="main">
+        <h1 id="h">TO-DO-LIST</h1>
+        <div id="item">
+        <ul>
+        <li>
+                 <span class="name">WELCOME!</span>
+                 <span class="delete">Delete</span>
+        </li>
+        </ul>
+        </div>
+        <form id="add">
+                  <input  id ="nothing" type="text" placeholder="New item">
+                  <button>Add</button>
+       </form>
+       </div>
+       <p>copyright 2023 Moon</p>
+       <script src="js.js"></script>
+
+</body>
+</html>
+
+CSS
+
+*{
+     border: 50px;
+}
+body{
+     background-image: url("D:\to do list/bg.jpg");
+     height: 100%;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     overflow-y: auto;
+}
+. main{
+     justify-content: center;
+     text-align: center;
+     background-image: url("D:\to do list/main.jpg");
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     margin-left: 30%;
+     margin-top: 7%;
+     padding: 30px;
+     width: 500px;
+     border-radius: 15px;
+}
+. main h1{
+      color: rgb(73, 0, 95);
+      font-weight: bold;
+}
+#item ul{
+      list-style-type:none ;
+}
+#item li{
+      padding: 20px;
+      border-left: 5px solid rgb(145, 145, 145);
+      margin: 20px 10px;
+      background-color: white;
+      border-radius: 5px;
+}
+#item li:hover{
+     border-left:5px solid rgb(79, 0, 116) ;
+}
+.delete{
+     float: right;
+     color: white;
+     border: 5px;
+     border: 2px solid white;
+     border-radius: 5px;
+     background-color: rgb(79, 0, 116);
+     margin-top: -2%;
+     padding: 7px;
+    cursor: pointer;
+}
+.delete:hover{
+     color: rgb(79, 0, 116);
+     border: 2px solid rgb(79, 0, 116);
+     background-color: white;
+     padding: 7px;
+}
+#add{
+     margin-left: 80px;
+     padding: 20px;  
+}
+#add input{
+     padding: 10px;
+     width:250px;
+     margin-right: 20px;
+}
+#add button{
+     float: right;
+     margin-right: 30px;
+     background-color: rgb(255, 0, 119);
+     padding: 8px;
+     width: 50px;
+     border-radius: 5px;
+     color: rgb(255, 255, 255);
+     cursor: pointer;
+}
+#add button:hover{
+     background-color: rgb(255, 59, 212);
+  
+}
+p{
+     color: rgb(196, 196, 196);
+     text-align: center;
+}
+@media only screen and (max-width: 600px){
+     .main{
+    margin-left: 7%;
+    margin-top: 60%;
+    width: 280px;
+    }
+    #item li{
+        width: 240px;
+        margin-left: -43px;
+    }
+    .name{
+        margin-left: -50px;
+        font-size: 18px;
+        text-align-last:justify ;
+    }
+    .delete{
+        margin-right: -10px;
+        margin-top: -8px;
+    }
+    #add{
+        margin-left: 5px;
+        padding: 20px;  
+    }
+    #add input{
+        padding: 10px;
+        width:150px;
+        margin-top: -10px;
+    }
+    #add button{
+        margin-top: 10px;
+        margin-right: 100px;
+    }
+
+}
+
+JAVA SCRIPT
+
+/delete element/
+const list=document.querySelector('#item ul');
+
+list.addEventListener('click',function(e){
+
+     if(e.target.className=='delete'){
+
+         const li =e.target.parentElement;
+
+         list.removeChild(li);
+     }
+});
+/create element/
+const del=document.forms['add'];
+
+var inp=document.getElementById("nothing");
+
+del.addEventListener('submit',function(e){
+
+     e.preventDefault();
+
+     const val=del.querySelector('input[type="text"]').value;
+
+     if(val==""){
+
+         inp.style.border="2px solid red"
+;
+         inp.placeholder="Enter a valid item";       
+         }
+     else{
+         inp.style.border="none";
+
+     const li=document.createElement('li');
+
+     const new_ele=document.createElement('span')
+;
+     const del_btn=document.createElement("span");
+    
+      new_ele.textContent= val;
+
+      del_btn.textContent="delete";
+      new_ele.classList.add("name");
+
+      del_btn.classList.add("delete");
+
+      li.appendChild(new_ele);
+
+      li.appendChild(del_btn);
+
+      list.appendChild(li);
+
+      inp.value="";
+
+     }
+
+});
+
+
